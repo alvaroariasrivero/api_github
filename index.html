@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Ejercicio NUMERO 2</h1>
+    <input id="buscador" type="text" name="usuario" value="">
+    <button type="submit" onclick="buscar()">Enviar</button>
+    <p id="nombre"></p>
+    <p id="nrepo"></p>
+    <img id="avatar" src="" alt="">
+    <script>
+        let name = document.getElementById("nombre");
+        let nrepo = document.getElementById("nrepo");
+        let avatar = document.getElementById("avatar");
+        let urlBase = "https://api.github.com/users/"
+        let buscar = ( ) => {
+            let url = document.getElementById("buscador").value;
+            fetch(`${urlBase}${url}`)
+            .then(res=>res.json())
+            .then(json=> {
+                console.log(json)
+                name.innerHTML = json.login;
+                nrepo.innerHTML = json.public_repos;
+                avatar.src = json.avatar_url;
+                })}
+    </script>
+</body>
+</html>
